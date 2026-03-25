@@ -8,7 +8,8 @@
     "build": "tsc -b && vite build",
     "preview": "vite preview --host 0.0.0.0 --port 4173",
     "serve:flask": "python server.py",
-    "serve:node": "npx serve@latest dist --listen 5000 --no-clipboard"
+    "serve:node": "npx serve@latest dist --listen 5000 --no-clipboard",
+    "deploy": "vercel --prod"
   },
   "dependencies": {
     "react": "^18.3.1",

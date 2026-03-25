@@ -16,7 +16,7 @@ export function Leaderboard({ players }: Props) {
       {/* Title bar */}
       <div className="bg-masters-green px-4 py-2 flex items-center justify-between">
         <span className="text-masters-gold text-xs font-bold tracking-widest uppercase">
-          Leaderboard
+          Golfer Leaderboard
         </span>
         <span className="text-green-300 text-xs">Par 72 · Augusta National</span>
       </div>

@@ -80,7 +80,74 @@ Output goes to `dist/`. This is what the server hosts.
 
 ---
 
-## Hosting Options
+## Deploy to Vercel (Recommended)
+
+Vercel hosts the app for free, permanently, with HTTPS and a shareable URL. No server, no laptop, no ngrok needed.
+
+### Prerequisites
+
+Create a free account at https://vercel.com (sign up with GitHub — you'll need GitHub for the easiest flow).
+
+---
+
+### Option 1 — GitHub integration (best for ongoing updates)
+
+Every time you push to GitHub, Vercel auto-rebuilds and redeploys. Share the URL once — it never changes.
+
+**Step 1 — Push to GitHub**
+
+Create a new repo at https://github.com/new (name it `masters-app`, set to Private if you prefer), then run:
+
+```bash
+git remote add origin https://github.com/<your-username>/masters-app.git
+git push -u origin main
+```
+
+**Step 2 — Connect to Vercel**
+
+1. Go to https://vercel.com/new
+2. Click **"Import Git Repository"**
+3. Select your `masters-app` repo
+4. Vercel auto-detects Vite — click **Deploy**
+
+Done. You'll get a URL like `https://masters-app.vercel.app`.
+
+To update the app later (e.g. add real scores):
+```bash
+git add .
+git commit -m "update scores"
+git push
+```
+Vercel rebuilds automatically within ~30 seconds.
+
+---
+
+### Option 2 — CLI deploy (fastest, no GitHub needed)
+
+```bash
+# Install Vercel CLI once
+npm install -g vercel
+
+# First deploy — follow the prompts (log in, confirm project name)
+vercel
+
+# All future deploys
+npm run deploy
+```
+
+The first `vercel` command walks you through login and project setup interactively. After that, `npm run deploy` redeploys in one command.
+
+---
+
+### Sharing the URL
+
+After deploying, copy the URL from the Vercel dashboard or terminal output and share it with your group. The URL is permanent and works on any device with no sign-in required.
+
+> **PWA install on iPhone:** Open the URL in Safari → Share → Add to Home Screen. The app installs like a native app. Requires HTTPS — Vercel provides this automatically.
+
+---
+
+## Local Hosting Options
 
 ### Option A — Flask (recommended for old laptop)
 
@@ -287,6 +354,7 @@ function App() {
 | `npm run preview` | `vite preview` | Preview production build (port 4173) |
 | `npm run serve:flask` | `python server.py` | Start Flask server (port 5000) |
 | `npm run serve:node` | `npx serve dist` | Node static server, no Python (port 5000) |
+| `npm run deploy` | `vercel --prod` | Deploy to Vercel (requires `npm install -g vercel`) |
 
 ---
 
