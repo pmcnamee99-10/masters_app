@@ -3,14 +3,27 @@ import { Header } from './components/Header'
 import { TournamentStatus } from './components/TournamentStatus'
 import { FantasyLeaderboard } from './components/FantasyLeaderboard'
 import { Leaderboard } from './components/Leaderboard'
+import { ComingSoon } from './components/ComingSoon'
 import { useScores } from './hooks/useScores'
 import { tournament } from './data/mockData'
+
+// ── Mode detection ────────────────────────────────────────────────────────────
+// Automatically shows the Coming Soon screen before the tournament starts.
+// Override any time via Vercel env var: VITE_APP_MODE = 'live' | 'coming-soon'
+const TOURNAMENT_START = new Date('2026-04-09T07:30:00-04:00') // 12:30 BST (UK)
+const FORCED_MODE = import.meta.env.VITE_APP_MODE as string | undefined
+const APP_MODE: 'coming-soon' | 'live' =
+  FORCED_MODE === 'live'         ? 'live'         :
+  FORCED_MODE === 'coming-soon'  ? 'coming-soon'  :
+  Date.now() < TOURNAMENT_START.getTime() ? 'coming-soon' : 'live'
 
 type Tab = 'fantasy' | 'golfers'
 
 function App() {
   const [tab, setTab] = useState<Tab>('fantasy')
   const { players, participants, loading, error, lastUpdated, isLive, refresh } = useScores()
+
+  if (APP_MODE === 'coming-soon') return <ComingSoon />
 
   return (
     <div className="min-h-screen bg-masters-cream">
