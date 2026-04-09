@@ -40,11 +40,11 @@ export function Leaderboard({ players }: Props) {
         <table className="w-full min-w-full">
           <thead>
             <tr className="bg-masters-green-dark text-masters-gold text-xs font-bold tracking-wider">
-              <th className="px-3 py-2.5 text-center w-12">POS</th>
+              <th className="px-1 py-2.5 text-center w-9">POS</th>
               <th className="px-2 py-2.5 text-left">PLAYER</th>
-              <th className="px-3 py-2.5 text-center w-16">TO PAR</th>
+              <th className="px-2 py-2.5 text-center w-12">TO PAR</th>
               <th className="px-2 py-2.5 text-center w-12 hidden sm:table-cell">TODAY</th>
-              <th className="px-2 py-2.5 text-center w-10 hidden sm:table-cell">THRU</th>
+              <th className="px-1 py-2.5 text-center w-9">THRU</th>
               <th className="px-2 py-2.5 text-center w-10 hidden md:table-cell">R1</th>
               <th className="px-2 py-2.5 text-center w-10 hidden md:table-cell">R2</th>
               <th className="px-2 py-2.5 text-center w-10 hidden md:table-cell">R3</th>

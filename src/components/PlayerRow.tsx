@@ -75,7 +75,7 @@ export function PlayerRow({ player, index, showCutLine }: Props) {
       <tr className={`${bg} border-b border-gray-100 transition-colors hover:bg-masters-cream/60`}>
 
         {/* Position */}
-        <td className="px-3 py-3 text-center w-12">
+        <td className="px-1 py-3 text-center w-9">
           <span className={posClass(player.positionDisplay)}>
             {player.positionDisplay}
           </span>
@@ -83,29 +83,21 @@ export function PlayerRow({ player, index, showCutLine }: Props) {
 
         {/* Player */}
         <td className="px-2 py-3">
-          <div className="flex items-center gap-2">
-            <span className="text-xl leading-none" aria-label={player.country}>
+          <div className="flex items-center gap-1.5">
+            <span className="text-lg leading-none" aria-label={player.country}>
               {player.flag}
             </span>
             <div className="min-w-0">
               <p className={`text-sm font-semibold leading-tight truncate ${!player.madeCut ? 'text-gray-400' : 'text-gray-800'}`}>
                 {player.name}
               </p>
-              <p className="text-xs text-gray-400 leading-tight">
-                {player.country}
-                {player.thru !== '-' && (
-                  <span className="sm:hidden">
-                    {' · '}
-                    {player.thru === 'F' ? 'F' : `H${player.thru}`}
-                  </span>
-                )}
-              </p>
+              <p className="text-[10px] text-gray-400 leading-tight">{player.country}</p>
             </div>
           </div>
         </td>
 
         {/* Total to par */}
-        <td className="px-3 py-3 text-center w-16">
+        <td className="px-2 py-3 text-center w-12">
           <span className={`text-sm ${totalClass(player.total, player.madeCut)}`}>
             {fmtTotal(player.total)}
           </span>
@@ -119,8 +111,8 @@ export function PlayerRow({ player, index, showCutLine }: Props) {
         </td>
 
         {/* Thru */}
-        <td className="px-2 py-3 text-center w-10 hidden sm:table-cell">
-          <span className="text-xs text-gray-400">{player.thru}</span>
+        <td className="px-1 py-3 text-center w-9">
+          <span className="text-xs text-gray-800">{player.thru}</span>
         </td>
 
         {/* R1 – R4 (desktop only) */}

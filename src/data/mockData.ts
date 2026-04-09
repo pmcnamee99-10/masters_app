@@ -103,7 +103,7 @@ export const rawParticipants = [
   { id: 23, name: 'David Connolly',    flag: '🇮🇪', pickIds: [ 3, 27, 35, 36, 45, 21, 44] },
   { id: 24, name: 'Oran Boyle',        flag: '🇮🇱', pickIds: [ 1, 16,  6, 30, 45, 38, 14] },
   { id: 25, name: 'Frank McCormack',   flag: '🇮🇪', pickIds: [ 2,  8, 29, 12, 42, 33, 14] },
-  { id: 26, name: 'Conor Maguire',     flag: '🇮🇪', pickIds: [ 1, 10, 15, 30, 45, 38, 44] },
+  { id: 26, name: 'Conor Maguire',     flag: '🇧🇹', pickIds: [ 1, 10, 15, 30, 45, 38, 44] },
   { id: 27, name: 'PJ Lavery',         flag: '🇮🇪', pickIds: [ 1,  8, 35, 12, 42, 21, 54] },
 ]
 

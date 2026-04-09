@@ -160,7 +160,7 @@ export function ParticipantRow({ participant, index, playerMap }: Props) {
                 <span className="w-12 text-center">POS</span>
                 <span className="w-12 text-center">TO PAR</span>
                 <span className="w-12 text-center hidden sm:block">TODAY</span>
-                <span className="w-10 text-center hidden sm:block">THRU</span>
+                <span className="w-10 text-center">THRU</span>
                 <span className="w-8 text-center hidden md:block">R1</span>
                 <span className="w-8 text-center hidden md:block">R2</span>
                 <span className="w-8 text-center hidden md:block">R3</span>
@@ -182,19 +182,12 @@ export function ParticipantRow({ participant, index, playerMap }: Props) {
                   {/* Player name + flag */}
                   <div className="pl-2 flex items-center gap-1.5 min-w-0">
                     <span className="text-base leading-none">{player.flag}</span>
-                    <div className="min-w-0">
-                      <div className="flex items-center gap-1.5">
-                        <span className={`font-medium truncate ${player.madeCut ? 'text-gray-700' : 'text-gray-400 line-through'}`}>
-                          {player.name}
-                        </span>
-                        {!player.madeCut && (
-                          <span className="text-[9px] text-gray-400 font-semibold shrink-0">MC</span>
-                        )}
-                      </div>
-                      {player.thru !== '-' && (
-                        <p className="text-[10px] text-gray-400 leading-tight sm:hidden">
-                          {player.thru === 'F' ? 'Finished' : `Hole ${player.thru}`}
-                        </p>
+                    <div className="flex items-center gap-1.5">
+                      <span className={`font-medium truncate ${player.madeCut ? 'text-gray-700' : 'text-gray-400 line-through'}`}>
+                        {player.name}
+                      </span>
+                      {!player.madeCut && (
+                        <span className="text-[9px] text-gray-400 font-semibold shrink-0">MC</span>
                       )}
                     </div>
                   </div>
@@ -217,8 +210,8 @@ export function ParticipantRow({ participant, index, playerMap }: Props) {
                   </div>
 
                   {/* THRU */}
-                  <div className="w-10 text-center hidden sm:block">
-                    <span className="text-gray-400">{player.thru}</span>
+                  <div className="w-10 text-center">
+                    <span className="text-gray-800">{player.thru}</span>
                   </div>
 
                   {/* R1 R2 R3 */}
