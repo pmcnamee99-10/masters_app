@@ -88,7 +88,7 @@ export function ComingSoon() {
           Fantasy Competition
         </p>
         <p className="text-green-300 text-xs leading-relaxed">
-          Picks are locked in. Standings go live when the first ball is struck on Thursday morning.
+          Deadline for picks 12:25pm. Standings go live when the first ball is struck on Thursday morning.
         </p>
       </div>
 

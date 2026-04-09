@@ -36,6 +36,8 @@ export interface Tier {
 // Normalised live score from any API provider — matched onto the roster by player name
 export interface LiveScore {
   name: string
+  country: string
+  flag: string
   positionDisplay: string
   total: number
   today: number | null
@@ -50,6 +52,7 @@ export interface LiveScore {
 export interface Participant {
   id: number
   name: string
+  flag: string
   pickIds: number[]  // 7 player IDs — one per tier (T1–T6 + Wildcard)
   position: number
   totalScore: number // sum of all 7 picks' total (relative to par)
@@ -58,5 +61,7 @@ export interface Participant {
   r3Total: number | null
   r4Total: number | null
   todayTotal: number | null
-  golfersDone: number // how many of the 7 picks have finished today's round
+  golfersDone: number    // finished today's round (thru = 'F')
+  golfersActive: number  // currently on the course
+  golfersNotStarted: number // yet to tee off
 }

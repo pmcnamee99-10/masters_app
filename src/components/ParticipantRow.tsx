@@ -93,12 +93,22 @@ export function ParticipantRow({ participant, index, playerMap }: Props) {
             <span className={`text-xs transition-transform duration-200 text-gray-400 ${expanded ? 'rotate-90' : ''}`}>
               ▶
             </span>
+            <span className="text-xl leading-none">{participant.flag}</span>
             <div className="min-w-0">
               <p className="text-sm font-semibold text-gray-800 leading-tight truncate">
                 {participant.name}
               </p>
-              <p className="text-xs text-gray-400 leading-tight">
-                {participant.golfersDone}/7 finished
+              <p className="text-xs leading-tight">
+                {participant.golfersNotStarted === 7
+                  ? <span className="text-gray-400">Not started</span>
+                  : participant.golfersDone === 7
+                  ? <span className="text-gray-400">All finished</span>
+                  : <span className="text-gray-400">
+                      {participant.golfersDone > 0 && <span>{participant.golfersDone} done · </span>}
+                      {participant.golfersActive > 0 && <span className="text-green-600">{participant.golfersActive} active · </span>}
+                      {participant.golfersNotStarted > 0 && <span>{participant.golfersNotStarted} to go</span>}
+                    </span>
+                }
               </p>
             </div>
           </div>
@@ -121,7 +131,11 @@ export function ParticipantRow({ participant, index, playerMap }: Props) {
         {/* Thru */}
         <td className="px-2 py-3 text-center w-10 hidden sm:table-cell">
           <span className="text-xs text-gray-400">
-            {participant.golfersDone === 7 ? 'F' : `${participant.golfersDone}/7`}
+            {participant.golfersNotStarted === 7
+              ? '-'
+              : participant.golfersDone === 7
+              ? 'F'
+              : `${participant.golfersDone}/7`}
           </span>
         </td>
 

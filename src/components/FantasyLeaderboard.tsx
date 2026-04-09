@@ -61,18 +61,15 @@ export function FantasyLeaderboard({ participants, players }: Props) {
       <div className="bg-gray-50 border-t border-gray-200 px-4 py-2 footer-safe">
         <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1">
           {[
-            { label: 'T1', cls: 'bg-masters-gold text-masters-green-dark' },
-            { label: 'T2', cls: 'bg-green-700 text-white' },
-            { label: 'T3', cls: 'bg-green-800 text-white' },
-            { label: 'T4', cls: 'bg-teal-700 text-white' },
-            { label: 'T5', cls: 'bg-slate-600 text-white' },
-            { label: 'T6', cls: 'bg-slate-700 text-white' },
-            { label: 'WC', cls: 'bg-purple-700 text-white' },
+            { label: 'T1', desc: 'Elite',       cls: 'bg-masters-gold text-masters-green-dark' },
+            { label: 'T2', desc: 'Contenders', cls: 'bg-green-700 text-white' },
+            { label: 'T3', desc: 'Dark Horses',cls: 'bg-green-800 text-white' },
+            { label: 'T4', desc: 'Solid',      cls: 'bg-teal-700 text-white' },
+            { label: 'T5', desc: 'Value',      cls: 'bg-slate-600 text-white' },
+            { label: 'T6', desc: 'Longshots',  cls: 'bg-slate-700 text-white' },
+            { label: 'WC', desc: 'Wildcard',   cls: 'bg-purple-700 text-white' },
           ].map(t => (
-            <span key={t.label} className="flex items-center gap-1 text-[10px] text-gray-500">
-              <span className={`text-[9px] font-bold px-1 py-0.5 rounded ${t.cls}`}>{t.label}</span>
-              {t.label === 'WC' ? 'Wildcard' : `Tier ${t.label[1]}`}
-            </span>
+            <span key={t.label} className={`text-[9px] font-bold px-1.5 py-0.5 rounded ${t.cls}`}>{t.label}</span>
           ))}
         </div>
       </div>

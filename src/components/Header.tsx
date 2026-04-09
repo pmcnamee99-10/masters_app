@@ -1,21 +1,38 @@
+import { useState, useEffect } from 'react'
 import { TournamentInfo } from '../types'
+import { getTournamentPhase, formatCountdown } from '../utils/tournamentPhase'
 
 interface Props {
   tournament: TournamentInfo
 }
 
 export function Header({ tournament }: Props) {
-  const statusLabel =
-    tournament.status === 'in-progress'
-      ? `Round ${tournament.currentRound} In Progress`
-      : tournament.status === 'complete'
-      ? 'Tournament Complete'
-      : `Round ${tournament.currentRound} Starting Soon`
+  const [now, setNow] = useState(new Date())
+
+  useEffect(() => {
+    const t = setInterval(() => setNow(new Date()), 1000)
+    return () => clearInterval(t)
+  }, [])
+
+  const phase = getTournamentPhase(now)
+
+  let badgeText = ''
+  let pulse = false
+
+  if (phase.type === 'pre-round') {
+    badgeText = `Round ${phase.round} starts in ${formatCountdown(phase.startsAt, now)}`
+  } else if (phase.type === 'in-progress') {
+    badgeText = `Round ${phase.round} In Progress`
+    pulse = true
+  } else if (phase.type === 'between') {
+    badgeText = `Round ${phase.completedRound} Complete · R${phase.nextRound} in ${formatCountdown(phase.nextStartsAt, now)}`
+  } else {
+    badgeText = 'Tournament Complete'
+  }
 
   return (
     <header className="bg-masters-green header-safe">
       <div className="px-4 pt-5 pb-6 text-center">
-        {/* Decorative rule */}
         <div className="flex items-center justify-center gap-3 mb-3">
           <div className="h-px w-10 bg-masters-gold opacity-60" />
           <span className="text-masters-gold text-xs tracking-[0.35em] uppercase font-light opacity-90">
@@ -24,7 +41,6 @@ export function Header({ tournament }: Props) {
           <div className="h-px w-10 bg-masters-gold opacity-60" />
         </div>
 
-        {/* Title */}
         <h1 className="font-serif text-masters-gold text-4xl md:text-5xl tracking-widest font-normal mb-1">
           THE MASTERS
         </h1>
@@ -33,11 +49,10 @@ export function Header({ tournament }: Props) {
           {tournament.year}&nbsp;·&nbsp;{tournament.location}
         </p>
 
-        {/* Live badge */}
         <div className="mt-4">
           <span className="inline-flex items-center gap-2 bg-masters-gold text-masters-green-dark text-xs font-bold px-4 py-1.5 rounded-full tracking-wider uppercase shadow-sm">
-            <span className="w-1.5 h-1.5 bg-masters-green-dark rounded-full animate-pulse" />
-            {statusLabel}
+            {pulse && <span className="w-1.5 h-1.5 bg-masters-green-dark rounded-full animate-pulse" />}
+            {badgeText}
           </span>
         </div>
       </div>

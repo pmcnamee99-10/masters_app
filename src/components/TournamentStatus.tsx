@@ -44,9 +44,6 @@ export function TournamentStatus({ tournament, isLive, loading, error, lastUpdat
             </span>
           )}
 
-          {!isLive && (
-            <span className="text-masters-gold/50 text-xs italic">Mock data</span>
-          )}
 
           {/* Manual refresh button (live mode only) */}
           {isLive && (

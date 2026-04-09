@@ -4,6 +4,7 @@ import { TournamentStatus } from './components/TournamentStatus'
 import { FantasyLeaderboard } from './components/FantasyLeaderboard'
 import { Leaderboard } from './components/Leaderboard'
 import { ComingSoon } from './components/ComingSoon'
+import { PickAnalysis } from './components/PickAnalysis'
 import { useScores } from './hooks/useScores'
 import { tournament } from './data/mockData'
 
@@ -21,9 +22,12 @@ type Tab = 'fantasy' | 'golfers'
 
 function App() {
   const [tab, setTab] = useState<Tab>('fantasy')
-  const { players, participants, loading, error, lastUpdated, isLive, refresh } = useScores()
+  const { players, fullLeaderboard, participants, loading, error, lastUpdated, isLive, refresh } = useScores()
 
   if (APP_MODE === 'coming-soon') return <ComingSoon />
+
+  // Hidden analysis page — local only, access via /#analysis in browser
+  if (window.location.hash === '#analysis') return <PickAnalysis />
 
   return (
     <div className="min-h-screen bg-masters-cream">
@@ -69,7 +73,7 @@ function App() {
           <FantasyLeaderboard participants={participants} players={players} />
         )}
         {tab === 'golfers' && (
-          <Leaderboard players={players} />
+          <Leaderboard players={isLive ? fullLeaderboard : players} />
         )}
       </main>
     </div>
