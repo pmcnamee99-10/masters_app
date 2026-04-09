@@ -6,8 +6,22 @@ interface Props {
 }
 
 export function Leaderboard({ players }: Props) {
-  const made   = players.filter(p => p.madeCut)
-  const missed = players.filter(p => !p.madeCut)
+  const hasStarted = (p: Player) => p.thru !== '-'
+
+  const sorted = [...players].sort((a, b) => {
+    const aStarted = hasStarted(a)
+    const bStarted = hasStarted(b)
+    // Not started always goes below anyone who has started
+    if (aStarted && !bStarted) return -1
+    if (!aStarted && bStarted) return 1
+    // Both started: sort by total score
+    if (aStarted && bStarted) return a.total - b.total
+    // Both not started: keep ESPN's original order (no re-sort)
+    return 0
+  })
+
+  const made   = sorted.filter(p => p.madeCut)
+  const missed = sorted.filter(p => !p.madeCut)
   const all    = [...made, ...missed]
 
   return (
