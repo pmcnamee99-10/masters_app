@@ -91,7 +91,15 @@ export function PlayerRow({ player, index, showCutLine }: Props) {
               <p className={`text-sm font-semibold leading-tight truncate ${!player.madeCut ? 'text-gray-400' : 'text-gray-800'}`}>
                 {player.name}
               </p>
-              <p className="text-xs text-gray-400 leading-tight">{player.country}</p>
+              <p className="text-xs text-gray-400 leading-tight">
+                {player.country}
+                {player.thru !== '-' && (
+                  <span className="sm:hidden">
+                    {' · '}
+                    {player.thru === 'F' ? 'F' : `H${player.thru}`}
+                  </span>
+                )}
+              </p>
             </div>
           </div>
         </td>
